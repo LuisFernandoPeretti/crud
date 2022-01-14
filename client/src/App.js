@@ -1,5 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 import './App.css';
+import Axios from "axios";
+import { normalizeQueryConfig } from 'pg/lib/utils';
 
 
 function App() {
@@ -13,8 +15,16 @@ function App() {
   };
 
   const handleClickButton = () => {
-    console.log(values)
-  }
+    Axios.post("http://localhost:3000/register", {
+      email: values.email,
+      nome: values.nome,
+      sobrenome: values.sobrenome,
+      cpf: values.cpf,
+      data_nascimento: values.data_nascimento,
+    }).then((res) => {
+      console.log(res);
+    })
+  };
 
   return <div className="app--container">
     <div className="register--container">
